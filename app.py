@@ -6,6 +6,7 @@ from flask_cors import CORS
 import json
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.utils import ChromeType
 import time
 import itertools
 
@@ -23,8 +24,8 @@ chrome_options = webdriver.ChromeOptions()
 # chrome_options.add_argument("--headless")
 chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument('--allow-running-insecure-content')
-browser = webdriver.Chrome(ChromeDriverManager().install(),options=chrome_options)
-
+# browser = webdriver.Chrome(ChromeDriverManager().install(),options=chrome_options)
+browser = webdriver.Chrome(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
 @app.route('/')
 def home_page():
     return "<h1>Hello From Flask</h1>"
